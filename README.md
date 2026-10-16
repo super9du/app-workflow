@@ -26,12 +26,6 @@ npx skills add super9du/app-workflow --skill app-workflow -g -a codex
 npx skills add super9du/app-workflow --skill app-workflow -g -a claude-code
 ```
 
-同时安装到 Codex 和 Claude Code，无交互执行：
-
-```bash
-npx skills add super9du/app-workflow --skill app-workflow -g -a codex -a claude-code -y
-```
-
 `-g` 表示用户级全局安装；省略则安装到当前项目。Codex 和 Claude Code 的命令通过同一个 Skills CLI 指定目标 agent，并非各客户端内置的安装子命令。已有同名技能请先保存本地修改；安装后新会话可加载技能。
 
 ## 仓库结构
