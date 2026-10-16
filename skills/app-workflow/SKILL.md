@@ -9,7 +9,7 @@ description: 建立 App 项目设计规范与 design token，并依据设计资�
 
 ## 任务路由
 
-- **init：项目设计配置**。用户要求建立项目设计基础时，读取 [project-setup.md](references/project-setup.md)。确定 DESIGN.md、design token 和所需平台技能。重复执行只补缺项，不覆盖已确认成果。
+- **init：项目设计配置**。用户要求建立项目设计基础时，读取 [project-setup.md](references/project-setup.md)。先检查 Git 并按需初始化本地仓库，再确定 DESIGN.md、design token 和所需平台技能。重复执行只补缺项，不覆盖已确认成果。
 - **develop：按设计开发**。大前端界面开发存在相关设计资料时，无需用户显式调用，必须读取并执行 [design-to-code.md](references/design-to-code.md)。
 - **制作设计稿**。用户需要探索或制作界面方案时，读取 [design-options.md](references/design-options.md)，根据目标推荐概念图、HTML 交互原型或 Figma。已有设计资料的开发不重复选路径。
 - **辅助能力由 agent 判断**。需要 HTML 转图片时读取 [html-to-image.md](references/html-to-image.md)；需要将已有 SVG 按主题、状态、尺寸转 PNG 时读取 [svg-to-png.md](references/svg-to-png.md)。它们不是额外用户子命令，也不是每次开发的必经步骤。
