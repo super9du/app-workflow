@@ -8,13 +8,46 @@
 
 ## 安装
 
-将本仓库克隆到客户端支持的技能目录下的 `app-workflow` 文件夹。以兼容 `.agents/skills` 的客户端为例：
+使用 Skills CLI（需要 Node.js 和 npx）：
 
 ```bash
-git clone https://github.com/super9du/app-workflow.git ~/.agents/skills/app-workflow
+npx skills add super9du/app-workflow --skill app-workflow -g
 ```
 
-已有同名目录时先检查内容，不覆盖本地修改。安装后按客户端要求刷新技能。
+仅安装到 Codex：
+
+```bash
+npx skills add super9du/app-workflow --skill app-workflow -g -a codex
+```
+
+仅安装到 Claude Code：
+
+```bash
+npx skills add super9du/app-workflow --skill app-workflow -g -a claude-code
+```
+
+同时安装到 Codex 和 Claude Code，无交互执行：
+
+```bash
+npx skills add super9du/app-workflow --skill app-workflow -g -a codex -a claude-code -y
+```
+
+`-g` 表示用户级全局安装；省略则安装到当前项目。Codex 和 Claude Code 的命令通过同一个 Skills CLI 指定目标 agent，并非各客户端内置的安装子命令。已有同名技能请先保存本地修改；安装后新会话可加载技能。
+
+## 仓库结构
+
+```text
+app-workflow/
+├── README.md
+└── skills/
+    └── app-workflow/
+        ├── SKILL.md
+        ├── agents/
+        ├── references/
+        └── scripts/
+```
+
+仓库说明与可安装技能分离；每个技能包含自己的入口、参考文档和脚本。Skills CLI 可自动发现 `skills/` 下的技能。
 
 ## 使用
 
@@ -33,12 +66,12 @@ git clone https://github.com/super9du/app-workflow.git ~/.agents/skills/app-work
 
 ## 文件与依赖
 
-入口见 [SKILL.md](SKILL.md)。初始化、开发、设计路径及转换说明按需加载，位于 references/。
+入口见 [SKILL.md](skills/app-workflow/SKILL.md)。初始化、开发、设计路径及转换说明按需加载，位于 skills/app-workflow/references/。
 
 转换脚本需要 Node.js 18+；SVG 转 PNG 需要 sharp；HTML 转图片需要 Playwright 与 Chrome。工作流本身不强制这些工具全部安装，只有调用转换能力时才需要。Figma 与其他专业技能均按任务选择。
 
 ```bash
-node scripts/test.cjs
+node skills/app-workflow/scripts/test.cjs
 ```
 
 测试使用临时目录和独立无头浏览器。可通过 APP_WORKFLOW_SHARP_MODULE、APP_WORKFLOW_PLAYWRIGHT_MODULE、APP_WORKFLOW_CHROME_PATH 指向已有依赖；不依赖个人机器固定路径。
